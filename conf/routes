@@ -1,0 +1,1 @@
+GET /ok controllers.IPv6Controller.ok
