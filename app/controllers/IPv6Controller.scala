@@ -6,7 +6,7 @@ import play.api.Logger
 class IPv6Controller extends Controller {
   val allowOriginHeader = ACCESS_CONTROL_ALLOW_ORIGIN -> "*"
 
-  def ok = Action { request =>
+  def check = Action { request =>
     val response = request.headers.get("X-Forwarded-For") match {
       case Some(ipv6) if ipv6 contains ':' =>
         Logger.info(s"Detected $ipv6 as IPv6")
