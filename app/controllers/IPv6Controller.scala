@@ -7,7 +7,7 @@ class IPv6Controller extends Controller {
 
   val allowOriginHeader = ACCESS_CONTROL_ALLOW_ORIGIN -> "*"
 
-  def ok = Action { request =>
+  def check = Action { request =>
     val xForwarderFor = request.headers.get(X_FORWARDED_FOR)
     val ips = xForwarderFor.toList flatMap toListOfIps
     val response = ips.reverse match {
