@@ -23,6 +23,7 @@ riffRaffBuildIdentifier :=  Option(System.getenv("CIRCLE_BUILD_NUM")).getOrElse(
 riffRaffUploadArtifactBucket := Option("riffraff-artifact")
 riffRaffUploadManifestBucket := Option("riffraff-builds")
 riffRaffManifestBranch := Option(System.getenv("CIRCLE_BRANCH")).getOrElse("dev")
+riffRaffArtifactResources += baseDirectory.value / "vcl" / "main.vcl" -> "ip-checker/main.vcl"
 
 javaOptions in Universal ++= Seq(
   "-Dpidfile.path=/dev/null",
