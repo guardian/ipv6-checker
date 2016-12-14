@@ -1,6 +1,10 @@
 sub vcl_recv {
 #FASTLY recv
-    error 850 "";
+    if (req.is_ipv6) {
+        error 850 "ipv6";
+    } else {
+        error 850 "ipv4";
+    }
 }
 
 sub vcl_error {
@@ -12,12 +16,7 @@ sub vcl_error {
         set obj.status = 200;
         set obj.http.Content-Type = "text/plain;";
         set obj.http.X-Client-Ip = client.ip;
-        # Setting a header to the IP converts it to a string which can then be regex matched
-        if (obj.http.X-Client-Ip ~ ":") {
-            synthetic {"ipv6"};
-        } else {
-            synthetic {"ipv4"};
-        }
+        synthetic obj.response;
         return(deliver);
     }
 }
