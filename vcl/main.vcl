@@ -16,6 +16,7 @@ sub vcl_error {
         set obj.status = 200;
         set obj.http.Content-Type = "text/plain;";
         set obj.http.X-Client-Ip = client.ip;
+        set obj.http.Access-Control-Allow-Origin = "*";
         synthetic obj.response;
         return(deliver);
     }
