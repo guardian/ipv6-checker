@@ -12,7 +12,7 @@ dependencies:
     - sbt compile
 test:
   override:
-    - sbt test
+    - echo "skipping test phase (no tests)"
 deployment:
   riffraff_upload:
     branch: /.*/

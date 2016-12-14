@@ -2,18 +2,6 @@ stacks:
  - frontend
 regions:
  - eu-west-1
-templates:
-  ip-checker-vcl:
-    type: fastly
-    contentDirectory: ip-checker
 deployments:
-  ipv6-checker:
-    type: autoscaling
-    parameters:
-      bucket: aws-frontend-artifacts
-  ip-checker-v4:
-    template: ip-checker-vcl
-  ip-checker-dual:
-    template: ip-checker-vcl
-  ip-checker-v6:
-    template: ip-checker-vcl
+  ip-checker:
+    type: fastly
